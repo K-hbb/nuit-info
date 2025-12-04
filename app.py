@@ -4,21 +4,24 @@ from datetime import datetime
 import google.generativeai as genai
 import time
 from collections import deque
+from dotenv import load_dotenv
 
 
 
 app = Flask(__name__)
 
-# Multiple API keys for rotation (to avoid quota limits)
+
+
+# Load API keys from environment variables (SECURE METHOD)
 API_KEYS = [
-    "AIzaSyDpQm_EpqBLG-hC_0OaHfmio8cqvSPQChQ",
-    "AIzaSyCBD7UYM9fRU_B3-adwmuXKdAeb5EhGSKM",
-    "AIzaSyCWQK0hyvWtipm2XCdB1BSaOsS4fzdD7ms",
-    "AIzaSyAIQnPIEARbNxiAUIla69Rr9m8OXsBCVBw",
-    "AIzaSyCPjfwt-lm-kwt0F9uZgzXFhYSQ8OyH_2o",
-    "AIzaSyAyRFccH77CpgopuP7vewGc5xx4tQ1epgw"
-    
+    os.getenv('GEMINI_API_KEY_1', ''),
+    os.getenv('GEMINI_API_KEY_2', ''),
+    os.getenv('GEMINI_API_KEY_3', ''),
+    os.getenv('GEMINI_API_KEY_4', ''),
+    os.getenv('GEMINI_API_KEY_5', ''),
+    os.getenv('GEMINI_API_KEY_6', ''),
 ]
+
 
 # Remove empty/placeholder keys
 API_KEYS = [key for key in API_KEYS if key and not key.startswith('YOUR_')]
